@@ -1,0 +1,99 @@
+\documentclass{sig-alternate}
+\usepackage{verbatim}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{multirow}
+\setcounter{secnumdepth}{5}
+\usepackage{pdfpages}
+
+
+\newcommand{\argmax}{\arg\!\max} 
+\newtheorem{definition}{Definition}
+\begin{document}
+\sloppy
+\numberofauthors{2}
+
+\author{
+Craig Willis, Mike Lambert, Kenton McHenry, and Christine Kirkpatrick\\
+     \affaddr{School of Information Sciences}\\
+     \affaddr{National Center for Supercomputing Applications}\\     
+     \affaddr{University of Illinois at Urbana-Champaign}\\
+     \affaddr{San Diego Supercomputer Center}\\     
+     \email{\{willis8, lambert8, mchenry\}@illinois.edu}
+}
+\conferenceinfo{PEARC}{'2017 New Orleans}
+
+\title{Container-based Analysis Environments for Low-Barrier Access to Research Data}
+
+\maketitle
+\begin{abstract}
+
+The growing size of high-value sensor-born or computationally derived scientific datasets are pushing the boundaries of traditional models of data access and discovery. Due to their size, these datasets are often only accessible through the systems on which they were created. Access for scientific exploration and reproducibility is limited to file transfer or by applying for access to the systems used to store or generate the original data, which is often infeasible. There is a growing trend toward providing access to large-scale research datasets in-place via container-based analysis environments. This poster describes the National Data Service (NDS) Labs Workbench platform and DataDNS initiative. The Labs Workbench platform is designed to provide scalable and low-barrier access to research data via container-based services. The DataDNS effort is a new initiative designed to enable discovery, access, and in-place analysis for large-scale data, providing a suite of interoperable services to enable researchers, as well as the tools they are most familiar with, to access and analyze these datasets where they reside.
+
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{H.3.3}{}{}
+
+%\terms{}
+\keywords{}
+
+\section{Introduction}
+
+Sensor-based, research- and high-performance computing (HPC) systems produce massive amounts of data. The resulting data products often take much longer to analyze and retain their scientific value for years. Additionally, their richness often supports multiple lines of investigation. However, traditional models of access and discovery, such as community and institutional repositories, are not equipped to handle these large datasets. Increasingly communities are turning to cloud-based infrastructure to enable access.  
+
+Very large datasets, such as those produced by state-of-the-art cosmology, climate, and turbulence simulations, are further pushing the boundaries of research data infrastructure.   Research-computing and HPC centers do not want to support long-term storage and guarantee access.  Data sharing services, such as Blue-Waters DSS, have failed. Researchers take it upon themselves to find long-term homes for very-large datasets.
+
+Research-computing and HPC centers are unable to guarantee access, as required by DOIs. These datasets are further disconnected from traditional discovery models, as researchers are not encouraged to publish data access information. This has resulted in things like the storage condo or SDSC transferring the RS data.
+
+Traditional models of access and discovery, such as community and institutional repositories, are not suitable for large datasets. Increasingly communities are turning to cloud-based infrastructure to enable access or, in the case of high-value datasets, the creation of specialized infrastructure to support access.
+
+Access is restricted due to resources to transfer and compute on the data; the requirement to apply for access to the associated system; the absence of methods of discovery in general.
+
+\section{Amazon Public Datasets}
+
+Describe AWS public datasets, what are available, how you get there. Also, describe the process for accessing.
+% https://scholar.google.com/scholar?hl=en&q=amazon+public+datasets&btnG=&as_sdt=1%2C14&as_sdtp=
+
+
+\section{Container-based analysis environments}
+
+
+
+
+Examples of systems using container-based interfaces: SciServer, Cyverse, yt.hub, etc.
+
+Examples include the Renaissance Simulations, DarkSky, TERRA-REF,
+
+\section{Labs Workbench}
+
+\section{Case: TERRA-REF}
+
+The ARPA-E TERRA program is focused on the development of cutting-edge techniques for the improvement of biofuel crops in part through the creation and publication of a large public reference dataset, called TERRA-REF, and associated computational pipeline. The TERRA-REF data-storage and computing system will provide researchers with access to 2PB of raw sensor and derived data hosted in the NCSA ROGER system and made available via Globus, Clowder, and the NDS Labs Workbench.  
+
+
+\subsection{Workshops and training}
+
+
+\section{Related Work}
+
+\section{Labs Workbench}
+
+\section{DataDNS}
+
+\section{Conclusion}
+
+
+
+
+\section{Acknowledgments}
+This work was supported in part by X. Any opinions, findings, conclusions, or recommendations expressed are those of the authors and do not necessarily reflect the views of the X.
+
+\bibliographystyle{abbrv}
+\bibliography{containers}  
+
+
+\end{document}
