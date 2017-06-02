@@ -43,15 +43,18 @@ The growing size of high-value sensor-born or computationally derived scientific
 
 \section{Introduction}
 
-A few background points:
-\begin{enumerate}
-\item Sensor-based, research-computing and high-performance computing (HPC) systems produce massive amounts of data. 
-\item Traditional models of access and discovery, such as community and institutional repositories, are not equipped to handle these very large datasets.  \item Increasing researchers are leaving their data on research computing infrastructure or turning to cloud-based services enable access and reuse.
-\item Since research-computing and HPC centers cannot support long-term storage of very large datasets or guarantee access, as is often required by publishers, these datasets are further disconnected from traditional discovery models.
-\item As computing center are turning to lower-cost cloud-based storage options, researchers are left with best-effort preservation solutions.
-\item There are lots of examples of low-barrier access being provided via Docker containers (yt.hub, SciServer, Whole Tale, Galaxy Portal, TERRA-REF, etc).
-\item Amazon public datasets
-\end{enumerate}
+Sensor-based, research-computing, and high-performance computing systems now produce massive amounts of data.  Traditional data publishing services, such as community and institutional repositories, are not equipped to handle these very large datasets.  Increasingly, researchers are leaving their data on research computing infrastructure or turning to cloud-based services to facilitate sharing. However, research-computing and HPC centers are typically not prepared to support long-term storage and access, as is often required by publishers, further disconnecting these research datasets from traditional discovery models. New models of in-place publishing are needed to support discovery and access.
+
+Existing approaches to providing access to these hosted datasets are ineffective.  Typically, research-computing infrastructure has supported two basic models of data access: transfer or direct access to the hosting system.  Transfer services, such as Globus Online, enable users to access these datasets by transferring them to local systems via GridFTP.  However, in some cases, the datasets are too large to move.  Interested researchers can apply for access to the system hosting the data, a process that is often involved and time-consuming.
+
+Institutional and community repositories are beginning to support ``remote'' data publishing, where metadata is published with the repository describing how users can access the datasets remotely.  The data is effectively published in-place with best-effort preservations guidelines. Researchers provide descriptive metadata about the datasets including methods of access and are assigned a dataset digital object identifier (DOI).  Under this model, users can discover these datasets and information about how to access them via traditional discovery mechanisms. 
+
+Container-based analysis environments are emerging as a mechanism to provide low-barrier access to research data in-place. There are many examples of projects providing access to very large datasets through custom container-based analysis environments, such as Jupyter notebooks and Rstudio.  In these systems, remote users register for an account on a web-based system that allows them to launch specialized analysis environments to explore data in-place.  Examples includes yt.Hub, SciServer, Galaxy Portal, and the ARPAE TERRA-REF projects. 
+
+
+%\item There are lots of examples of low-barrier access being provided via Docker containers (yt.hub, SciServer, Whole Tale, Galaxy Portal, TERRA-REF, etc).
+%\item Amazon public datasets
+%\end{enumerate}
 
 
 Central argument:
