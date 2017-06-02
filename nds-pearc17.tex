@@ -74,6 +74,8 @@ Container technology is increasingly used in research computing as an alternativ
 
 \emph{Container-based analysis environments} refers to systems that leverage container technology for the packaging and execution of interactive scientific research software. Containers are currently used in a variety of systems providing interactive and non-interactive access to research data. Systems such as yt.hub, SciServer, Galaxy Portal, Whole Tale, and the TERRA-REF Analysis Workbench provide interactive containerized environments based on software including Jupyter, RStudio, and MatLab. Other systems, such as Cyverse and SciPort\cite{Gerlach:2014:SCE:2689676.2689680}, leverage containers for the management and execution of scientific workflows, which we'll refer to as \emph{container-based execution environments}.  These are more likely to fit into batch-scheduling infrastructure.
 
+Todo: mention something about containers for preservation.
+
 \section{Labs Workbench}
 
 Labs Workbench is an open-source platform developed by the National Data Service Consortium to facilitate sharing, discovery, evaluation, and development of research data management and analysis tools. The platform leverages Docker containers and the Kubernetes container orchestration framework to provide turn-key access to community developed tools. 
@@ -100,7 +102,12 @@ The Labs Workbench platform was later used to support the two-week PI4 Computati
 
 \section{DataDNS}
 
-What is DataDNS and how does it solve these problems.
+The Labs Workbench is just one example of an emerging trend to provide access to research data via cloud and container-based environments.  Other examples include yt.hub, an innovator in this area, that uses Girder and Jupyter to enable access to access to analysis environments for a number of fields including astronomy and cosmology.  The yt.hub architecture is currently being adapted to support the Renaissance Simulations Laboratory (RSL), providing access to the Renaissance Simulations generated on BlueWaters, and the Whole Tale project.  Similarly, the SciServer Compute system provides access to astronomy, materials science, turbulence, and earth science datasets via Python, Rstudio, MatLab and Jupyter containers.  SciServer also offers a container-based job scheduling component not available in these other systems.
+
+DataDNS is an initiative to support discovery, access, and in-place analysis for large-scale data based on the availability of these and related services. DataDNS is intended to connect traditional research data publishing infrastructure to research computing infrastructure. The goal is to enable users to not only discover these datasets, but also to enable access for in-place analysis. DataDNS will provide an active registry and resolution service to connect researchers to locations with access, analysis, and compute capabilities.  
+
+Through DataDNS, researchers can register datasets to enable access in-place. Datasets will include information about associated capabilities, such as transfer, container-based, cloud-based or batch compute. Researchers will not only be able to find the data, but also access it and perform analysis, when possible.   
+
 
 \section{Conclusion}
 
