@@ -74,11 +74,6 @@ Container technology is increasingly used in research computing as an alternativ
 
 \emph{Container-based analysis environments} refers to systems that leverage container technology for the packaging and execution of interactive scientific research software. Containers are currently used in a variety of systems providing interactive and non-interactive access to research data. Systems such as yt Hub \cite{smith2011}, SciServer \cite{Medvedev:2016:SCB:2949689.2949700}, Whole Tale, and the TERRA-REF Analysis Workbench \cite{willis_craig_2017_580057} provide interactive containerized environments based on software including Jupyter \cite{kluyver2016jupyter}, RStudio \cite{Rstudio2015}, and MatLab. Other systems, such as Cyverse and SciPort\cite{Gerlach:2014:SCE:2689676.2689680}, leverage containers for the management and execution of scientific workflows. We refer to these non-interactive environments as \emph{container-based execution environments}, which are more likely to fit into batch-scheduling infrastructure.  Increasingly, research systems developers are seeing the need to support the computational research lifecycle from preliminary exploration through development and execution either on dedicated cloud-based or HPC systems.
 
-
-We present case studies of complex high-energy physics applications and show how the framework can be useful for sandboxing, preserving, and distributing applications
-
-Todo: mention something about containers for preservation.
-
 \section{Labs Workbench}
 
 Labs Workbench is an open-source platform developed by the National Data Service Consortium to facilitate sharing, discovery, evaluation, and development of research data management and analysis tools. The platform leverages Docker containers and the Kubernetes container orchestration framework to provide turn-key access to community developed tools. 
@@ -105,18 +100,17 @@ The Labs Workbench platform was later used to support the two-week PI4 Computati
 
 The TERRA-REF Analysis Workbench presents an interesting case. The same system is used to provide access to data products for exploration and reuse; system development; as well as education and training.
 
-\section{System architecture}
+\subsection{System architecture}
 
-The Labs Workbench platform is based on the Kubernetes container orchestration framework and  deployed using the OpenStack virtualization platform. Figure \ref{fig.arch} illustrates the basic architecture. First, a set of virtual machines and volumes is provisioned via the OpenStack API. Second, Kubernetes core services (controller, scheduler, kubelet, etc) are deployed on each node. Third, Labs Workbench core services and system services, such as the Nginx ingress load-balancer as well as logging and monitoring services, are deployed using Kubernetes. Labs Workbench provides a thin REST API server and Angular user interface to enable users to launch applications from the service catalog. The service catalog itself is a set of Javascript Object Notation (JSON) objects currently stored in Github. The Labs Workbench platform uses Gluster to provide shared storage between nodes and containers. Additional shared network volumes can also be mounted via NFS.
+The Labs Workbench platform is based on the Kubernetes\footnote{http://www.kubernetes.io} container orchestration framework, deployed using the OpenStack\footnote{http://www.openstack.org} virtualization platform. Figure \ref{fig.arch} illustrates the basic architecture. First, a set of virtual machines and volumes is provisioned via the OpenStack API. Second, Kubernetes core services (controller, kubelet, and etcd) are deployed on each node. Third, Labs Workbench core and system services are deployed via Kubernetes. Labs Workbench core services include the the Nginx ingress load-balancer (nginx-ilb), which provides authenticated access to running containers in the cluster, as well as a thin REST API server (ndslabs-apiserver) an Angular user interface (ndslabs-webui). System services include standard logging, monitoring and alerting (LMA) tools such as Kibana/ElasticSaerch, Grafana/Heapster, and Nagios.  The system includes a private Docker registry for image caching.  Via Labs Workbench, users can launch a variety of Docker-based applications including but not limited to Jupyter and RStudio environments. The service catalog itself is a set of customizable Javascript Object Notation (JSON) objects currently stored in Github\footnote{https://www.github.com/nds-org/ndslabs-specs}. The Labs Workbench platform uses Gluster\footnote{https://www.gluster.org/} to provide shared storage between nodes and containers. Additional shared network volumes can also be mounted via other network services, such as NFS.
 
 \begin{figure}[!ht]
-\centering
-\includegraphics[width=8.5cm]{architecture.png}
+\includegraphics[width=8.75cm]{architecture.png}
 \caption{Labs Workbench systems architecture}
 \label{fig.arch}
 \end{figure}
 
-
+The Labs Workbench platform is focused primarily on interactive, web-based applications.  Complex applications with multiple dependencies are supported. Support is available for command-line applications via web-based IDEs or terminal emulators.  
 
 \section{DataDNS}
 
