@@ -42,15 +42,15 @@ The growing size of high-value sensor-born or computationally derived scientific
 
 \section{Introduction}
 
-Sensor-based, research-computing, and high-performance computing systems now produce massive amounts of data.  Traditional data publishing services, such as community and institutional repositories, are not equipped to handle very large research datasets.  Increasingly, researchers are leaving their data on research computing infrastructure or turning to cloud-based services to facilitate sharing and re-use. However, research-computing and HPC centers are typically not prepared to support long-term storage and access, as is often required by publishers, further disconnecting these research products from traditional discovery methods. New models of in-place publishing are needed to connect research computing and research data publishing infrastructure to support discovery and access for re-use and reproducibility.
+Sensor-based, research-computing, and high-performance computing systems now produce massive amounts of data.  Traditional data publishing services, such as community and institutional repositories, are not equipped to handle very large research datasets.  Increasingly, researchers are leaving their data on research computing infrastructure or turning to cloud-based services to facilitate sharing and re-use. However, research-computing and HPC centers are typically not prepared to support long-term storage and access, as is often required by publishers, further disconnecting these research products from traditional discovery methods. New models of in-place publishing are needed to connect research computing and data publishing infrastructure to support discovery and access for re-use and reproducibility.
 
-Institutional and community repositories are beginning to support ``remote'' data publishing.  With this approach, researchers are responsible for arranging data storage with best-effort preservation and datasets are effectively published in-place. Researchers provide the repository with descriptive metadata about the datasets including methods of access and are assigned a digital object identifier (DOI).  Under this model, users can discover these datasets and information about how to access them via traditional discovery mechanisms. 
+Institutional and community repositories are beginning to support ``remote'' data publishing.  With this approach, researchers are responsible for arranging data storage with best-effort preservation and datasets are effectively published in-place. Researchers provide the repository with descriptive metadata including methods of access and are assigned a digital object identifier (DOI).  Under this model, users can discover these datasets and information about how to access them via traditional discovery mechanisms. 
 
-Existing approaches to providing access to these hosted datasets are inefficient and often ineffective.  Typically, research-computing infrastructure has supported two basic models of data access: transfer and direct access to the hosting system.  Transfer services, such as Globus Online, enable users to access these datasets by transferring them to local systems via GridFTP.  However, in many cases, the datasets are too large to move or copy. Researchers can apply for access to the systems used to store and generate the original data, but access is often restricted and the application process involved and time consuming.
+Existing approaches to providing access to these hosted datasets are inefficient and often ineffective.  Typically, research-computing infrastructure has supported two basic models of data access: transfer and direct access to the hosting system.  Data transfer services, such as Globus Online, enable users to access these datasets by transferring them to local systems via GridFTP.  However, in many cases, the datasets are too large to move or copy. In these cases, researchers can apply for access to the systems used to generate and store  the original data, but access is often restricted and the application process involved and time consuming.
 
-Container-based analysis environments are emerging as a mechanism to provide low-barrier access to research data in-place.  Using container technology such as Docker, projects provide access to large datasets through custom analysis environments, such as Jupyter notebooks or Rstudio.  In these systems, remote users are able to register for an account via web-based interfaces that allow them to launch specialized, resource-constrained analysis environments to explore data in-place. Examples includes yt Hub \cite{smith2011}, SciServer \cite{Medvedev:2016:SCB:2949689.2949700}, and the TERRA-REF Analysis Workbench \cite{willis_craig_2017_580057}.
+Container-based analysis environments are emerging as a mechanism to provide low-barrier access to research data in-place.  Using container technology such as Docker, projects provide access to large datasets through custom analysis environments, such as Jupyter notebooks or Rstudio server.  Typically, remote users are able to register for an account via web-based interfaces that allow them to launch specialized, resource-constrained analysis environments to explore data in-place. Examples includes yt Hub \cite{smith2011}, SciServer \cite{Medvedev:2016:SCB:2949689.2949700}, and the TERRA-REF Analysis Workbench \cite{willis_craig_2017_580057}.
 
-This paper describes two initiatives of the National Data Service (NDS) to facilitate in-place access to large research datasets. The Labs Workbench platform, used by the ARPAE TERRA-REF project, is designed to support exposing research data via customizable container-based analysis environments.  The DataDNS initiative is intended to connect various container-based analysis systems to the traditional publishing and discovery platforms to enable discovery, access, and analysis of datasets where they reside.
+This paper describes two initiatives of the National Data Service (NDS) to facilitate in-place access to large research datasets. The Labs Workbench platform, used by the ARPAE TERRA-REF project, is designed to support access to research data via customizable container-based analysis environments.  The DataDNS initiative is intended to connect various container-based analysis systems to the traditional publishing and discovery platforms to enable discovery, access, and analysis of datasets where they reside.
 
 
 %\item There are lots of examples of low-barrier access being provided via Docker containers (yt.hub, SciServer, Whole Tale, Galaxy Portal, TERRA-REF, etc).
@@ -63,7 +63,8 @@ This paper describes two initiatives of the National Data Service (NDS) to facil
 
 This paper is organized as follows.  Section 2 provides a description of container-based analysis environments.  In Section 3 we describe the NDS Labs Workbench system and specifically how it's being used for the ARPAE TERRA-REF project, followed by a description of the NDS DataDNS initiative in Section 4 and next steps in Section 5.
 
-%\section{Research in the Cloud}
+\section{Research in the Cloud}
+
 %Space permitting, we can talk about the cloud-computing trend and services like Amazon Public Datasets.
 
 % https://scholar.google.com/scholar?hl=en&q=amazon+public+datasets&btnG=&as_sdt=1%2C14&as_sdtp=
@@ -72,35 +73,26 @@ This paper is organized as follows.  Section 2 provides a description of contain
 
 Container technology is increasingly used in research computing as an alternative to hypervisor-based virtual machines for the packaging, deployment, and execution of software. Containers are considered to be more resource-efficient and provide a clear and light-weight abstraction for packaging and increasingly for the preservation of research software \cite{Meng2015137}.  Because of this, container management platforms such as Docker\footnote{http://www.docker.com} and rkt\footnote{https://coreos.com/rkt} have achieved widespread adoption. The reader is directed to more detailed analysis of container technology in \cite{Soltesz:2007:COS:1272998.1273025,7095802,7036275}.
 
-\emph{Container-based analysis environments} refer to systems that leverage container technology for the packaging and execution of interactive scientific research software. Containers are currently used in a variety of systems providing interactive and non-interactive access to research data. Systems such as yt Hub \cite{smith2011}, SciServer \cite{Medvedev:2016:SCB:2949689.2949700}, Whole Tale \cite{ludaescher2016capturing}, and the TERRA-REF Analysis Workbench \cite{willis_craig_2017_580057} provide interactive containerized environments based on software including Jupyter \cite{kluyver2016jupyter}, RStudio \cite{Rstudio2015}, and MatLab\footnote{https://www.mathworks.com/}. Other systems, such as Cyverse\cite{devisetty2016bringing} and SciPort\cite{Gerlach:2014:SCE:2689676.2689680}, leverage containers for the management and execution of scientific workflows. We refer to these non-interactive environments as \emph{container-based execution environments}, which are more likely to fit into workflow systems and batch-scheduling infrastructure.  Increasingly, research systems developers are seeing the need to support the computational research lifecycle from preliminary exploration through development and execution either on dedicated cloud-based or HPC systems.
+\emph{Container-based analysis environments} refer to systems that leverage container technology for the packaging and execution of interactive scientific research software. Containers are currently used in a variety of systems providing interactive and non-interactive access to research data. Systems such as yt Hub \cite{smith2011}, SciServer \cite{Medvedev:2016:SCB:2949689.2949700}, Whole Tale \cite{ludaescher2016capturing}, and the TERRA-REF Analysis Workbench \cite{willis_craig_2017_580057} provide interactive containerized environments based on software including Jupyter \cite{kluyver2016jupyter}, RStudio \cite{Rstudio2015}, and MatLab\footnote{https://www.mathworks.com/}. Other systems, such as Cyverse\cite{devisetty2016bringing} and SciPort\cite{Gerlach:2014:SCE:2689676.2689680}, leverage containers for the management and execution of scientific workflows. We refer to these non-interactive environments as \emph{container-based execution environments}, which are more likely to fit into workflow systems and batch-scheduling infrastructure.  
+
+Increasingly, research systems developers are seeing the need to support the computational research lifecycle from preliminary exploration through development and execution either on dedicated cloud-based or HPC systems. Container-based analysis environments support the early stages of exploratory analysis.
 
 \section{Labs Workbench}
 
 Labs Workbench is an open-source platform developed by the National Data Service Consortium (NDSC) to facilitate sharing, discovery, evaluation, and development of research data management and analysis tools. The platform leverages Docker containers and the Kubernetes container orchestration framework to provide turn-key access to community developed tools. 
 
-The Labs Workbench system includes the following features:
-\begin{enumerate}
-\itemsep-0.2em
-\item Scalable container orchestration via Kubernetes
-\item Catalog of community-contributed tools
-\item Ability to import custom tools and personal catalogs
-\item Authentication
-\item Logging and monitoring
-\item Shared filesystem via GlusterFS
-\end{enumerate}
-
 Labs Workbench has been effectively used in classroom and workshop environments to provide consistent, web-based access to applications. In early 2017, the Labs Workbench was deployed by the ARPAE TERRA-REF project to provide customized interactive analysis environments for the TERRA-REF reference dataset. 
 
-\section{Use Case: TERRA-REF}
+\subsection{Use Case: TERRA-REF}
 
-The ARPA-E TERRA program is focused on cutting-edge techniques for the improvement of biofuel crops in part through the creation and publication of a large public reference dataset, TERRA-REF, and associated compute pipeline\cite{arpae2015}. The TERRA-REF data storage and computing system will provide researchers with access to over 2PB of raw sensor and derived data hosted on the NSF ROGER system and made available via Globus, Clowder, BETYdb, and the Labs Workbench. Researchers can also apply for accounts on the ROGER system directly for access via batch-processing. The TERRA-REF team is working withe the Dryad data repository\footnote{https://www.datadryad.org} to publish the remotely-hosted reference dataset.
+The ARPA-E TERRA program is focused on cutting-edge techniques for the improvement of biofuel crops in part through the creation and publication of a large public reference dataset, TERRA-REF, and associated compute pipeline\cite{arpae2015}. The TERRA-REF data storage and computing system will provide researchers with access to over 2PB of raw sensor and derived data hosted on the NSF ROGER system and made available via Globus, Clowder, BETYdb, and the Labs Workbench. Researchers can also apply for accounts on the ROGER system directly for access via batch-processing. The TERRA-REF team is working with the Dryad data repository\footnote{https://www.datadryad.org} to publish the remotely-hosted reference dataset.
 
-In early 2017, the TERRA-REF team used the Labs Workbench platform to host a workshop, enabling ~50 participants to explore the reference dataset using domain-specific Jupyter, Rstudio and other interactive environments. Shortly after, an instance of Labs Workbench, named the TERRA-REF Analysis Workbench, was deployed on the NCSA Nebula OpenStack system to provide ongoing access to the TERRA-REF data for project contributors. Custom containers were created based on Jupyter, Rstudio, Cloud9, and Wetty to include dependencies required to access and use the TERRA-REF data including NetCDF/NCO and OpenCV libraries.  Additional containers were created to support system development, including a Python IDE for Clowder extractors and PostgresSQL Studioto provide access to the BETYdb PostGIS database.
+In early 2017, the TERRA-REF team used the Labs Workbench platform to host a workshop, enabling ~50 participants to explore the reference dataset using domain-specific Jupyter, Rstudio and other interactive environments. Shortly after, an instance of Labs Workbench, named the TERRA-REF Analysis Workbench, was deployed on the NCSA Nebula OpenStack system to provide ongoing access to the TERRA-REF data for project contributors. Custom containers were created based on Jupyter, Rstudio, Cloud9, and Wetty to include dependencies required to access and use the TERRA-REF data including NetCDF/NCO and OpenCV libraries.  Additional containers were created to support system development, including a Python IDE for Clowder extractors and PostgresSQL Studio to provide access to the BETYdb PostGIS database.
 
-The Labs Workbench platform was later used to support the two-week PI4 Computational Mathematics Bootcamp, an NSF funded program for graduate students to gain computational skills needed in scientific and engineering research labs. Students were provided with access to the TERRA-REF containers and data for a series of tutorials. 
+The Labs Workbench platform was later used to support the two-week PI4 Computational Mathematics Bootcamp, an NSF funded program for graduate students to gain computational skills needed in scientific and engineering research labs. Students were provided with access to the TERRA-REF containers and data for a series of tutorials.
 
+The TERRA-REF Analysis Workbench demonstrates that the same system can be used to provide access to data products for scientific exploration and reuse; collaborative system development; as well as education and training.
 
-The TERRA-REF Analysis Workbench presents an interesting case. The same system is used to provide access to data products for exploration and reuse; system development; as well as education and training.
 
 \subsection{System architecture}
 
@@ -111,6 +103,19 @@ The Labs Workbench platform is based on the Kubernetes\footnote{http://www.kuber
 \caption{Labs Workbench systems architecture}
 \label{fig.arch}
 \end{figure}
+
+
+The Labs Workbench system includes the following features:
+\begin{enumerate}
+\itemsep-0.2em
+\item Catalog of community-contributed tools 
+\item Support for custom tools and personal catalogs
+\item Authentication
+\item Logging and monitoring
+\item Shared filesystem via GlusterFS
+\item Scalable container orchestration
+\end{enumerate}
+
 
 The Labs Workbench platform is focused primarily on interactive, web-based applications.  Complex applications with multiple dependencies are supported. Support is available for command-line applications via web-based IDEs or terminal emulators.  
 
