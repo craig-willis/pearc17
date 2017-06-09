@@ -12,6 +12,9 @@
 
 \newcommand{\argmax}{\arg\!\max} 
 \newtheorem{definition}{Definition}
+
+
+
 \begin{document}
 \sloppy
 \numberofauthors{4}
@@ -23,7 +26,11 @@ Craig Willis$^{1,3}$, Mike Lambert$^{1,3}$, Kenton McHenry$^{1,3}$, and Christin
      \affaddr{$^3$National Data Service}\\     
      \email{\{willis8, lambert8, mchenry\}@illinois.edu, christine@sdsc.edu}
 }
-\conferenceinfo{PEARC}{'2017 New Orleans}
+\CopyrightYear{}
+\crdata{}
+\permission{}
+\copyrightetc{}
+\conferenceinfo{}{}
 
 \title{Container-based Analysis Environments for Low-Barrier Access to Research Data}
 
@@ -69,7 +76,7 @@ This paper is organized as follows.  Section 2 provides a description of contain
 
 \section{Container-based analysis environments}
 
-Container technology is increasingly used in research computing as an alternative to hypervisor-based virtual machines for the packaging, deployment, and execution of software. Containers are considered to be more resource-efficient, provide a clear and light-weight abstraction for packaging, and are increasingly seen as a possible solution for the preservation of research software \cite{Meng2015137}.  Because of this, container management platforms such as Docker\footnote{http://www.docker.com} and rkt\footnote{https://coreos.com/rkt} have achieved widespread adoption. This section focuses on container use for access to research data. For more information about container technology, the reader is directed to more detailed analysis in \cite{7036275,7095802,Soltesz:2007:COS:1272998.1273025}. 
+Container technology is increasingly used in research computing as an alternative to hypervisor-based virtual machines for the packaging, deployment, and execution of software. Containers are considered to be more resource-efficient, provide a clear and light-weight abstraction for packaging, and are increasingly seen as a possible solution for the preservation of research software \cite{Meng2015137}.  Because of this, container management platforms such as Docker\footnote{\small http://www.docker.com} and rkt\footnote{\small https://coreos.com/rkt} have achieved widespread adoption. This section focuses on container use for access to research data. For more information about container technology, the reader is directed to more detailed analysis in \cite{7036275,7095802,Soltesz:2007:COS:1272998.1273025}. 
 
 \emph{Container-based analysis environments} refer to systems that leverage container technology for the packaging and execution of interactive scientific research software. Containers are currently used in a variety of systems providing interactive and non-interactive access to research data. Systems such as SciServer, yt Hub, Whole Tale \cite{ludaescher2016capturing}, and the TERRA-REF Analysis Workbench provide interactive containerized environments based on software including Jupyter \cite{kluyver2016jupyter}, RStudio \cite{Rstudio2015}, and MATLAB \cite{mathworks}. Other systems, such as CyVerse\cite{devisetty2016bringing} and SciPort\cite{Gerlach:2014:SCE:2689676.2689680}, leverage containers for the management and execution of scientific workflows. We refer to these non-interactive environments as \emph{container-based execution environments}, which are more likely to fit into workflow systems and batch-scheduling infrastructure.  
 
@@ -83,18 +90,18 @@ Labs Workbench has been effectively used in classroom and workshop environments 
 
 \subsection{Use Case: TERRA-REF}
 
-The ARPA-E TERRA program is focused on cutting-edge techniques for the improvement of biofuel crops in part through the creation and publication of a large public reference dataset, TERRA-REF, and associated compute pipeline \cite{arpae2015}. The TERRA-REF data storage and computing system will provide researchers with access to over 2PB of raw sensor and derived data hosted on the NSF ROGER system and made available via Globus, Clowder~\cite{Marini10,Sophocleous17}, BETYdb\footnote{https://www.betydb.org}, and the Labs Workbench. Researchers can also apply for accounts on the ROGER system directly for access via batch-processing. The TERRA-REF team is working with the Dryad data repository\footnote{https://www.datadryad.org} to publish the remotely-hosted reference dataset.
+The ARPA-E TERRA program is focused on cutting-edge techniques for the improvement of biofuel crops in part through the creation and publication of a large public reference dataset, TERRA-REF, and associated compute pipeline \cite{arpae2015}. The TERRA-REF data storage and computing system will provide researchers with access to over 2PB of raw sensor and derived data hosted on the NSF ROGER system and made available via Globus, Clowder~\cite{Marini10,Sophocleous17}, BETYdb\footnote{\small https://www.betydb.org}, and the Labs Workbench. Researchers can also apply for accounts on the ROGER system directly for access via batch-processing. The TERRA-REF team is working with the Dryad data repository\footnote{\small https://www.datadryad.org} to publish the remotely-hosted reference dataset.
 
-In early 2017, the TERRA-REF team used the Labs Workbench platform to host a workshop\footnote{http://www.phenome2017.org}, enabling ~50 participants to explore the reference dataset using domain-specific Jupyter, Rstudio and other interactive environments. Shortly after, an instance of Labs Workbench, named the TERRA-REF Analysis Workbench, was deployed on the National Center for Supercomputing Applications (NCSA) Nebula cloud-computing system to provide ongoing access to the TERRA-REF data for project contributors. Custom containers were created based on Jupyter, Rstudio, and other services to include dependencies required to access and use the TERRA-REF data such as NetCDF/NCO and OpenCV libraries~\cite{Kaebler}.  Additional containers were created to support system development, including a Python IDE for Clowder extractors and PostgresSQL Studio to provide access to the BETYdb PostGIS database.
+In early 2017, the TERRA-REF team used the Labs Workbench platform to host a workshop\footnote{\small http://www.phenome2017.org}, enabling ~50 participants to explore the reference dataset using domain-specific Jupyter, Rstudio and other interactive environments. Shortly after, an instance of Labs Workbench, named the TERRA-REF Analysis Workbench, was deployed on the National Center for Supercomputing Applications (NCSA) Nebula cloud-computing system to provide ongoing access to the TERRA-REF data for project contributors. Custom containers were created based on Jupyter, Rstudio, and other services to include dependencies required to access and use the TERRA-REF data such as NetCDF/NCO and OpenCV libraries~\cite{Kaebler}.  Additional containers were created to support system development, including a Python IDE for Clowder extractors and PostgresSQL Studio to provide access to the BETYdb PostGIS database.
 
-The Labs Workbench platform was later used to support the two-week Program for Interdisciplinary and Industrial Internships at Illinois (PI4) Computational Mathematics Bootcamp\footnote{https://pi4-uiuc.github.io/2017-bootcamp}, an NSF funded program for graduate students to gain computational skills needed in scientific and engineering research labs. Students were provided with access to the TERRA-REF containers and data for a series of tutorials.
+The Labs Workbench platform was later used to support the two-week Program for Interdisciplinary and Industrial Internships at Illinois (PI4) Computational Mathematics Bootcamp\footnote{\small https://pi4-uiuc.github.io/2017-bootcamp}, an NSF funded program for graduate students to gain computational skills needed in scientific and engineering research labs. Students were provided with access to the TERRA-REF containers and data for a series of tutorials.
 
 The TERRA-REF Analysis Workbench demonstrates that the same system can be used to provide access to data products for scientific exploration and reuse; collaborative system development; as well as education and training. To date, the system has been used to provide access to the TERRA-REF data for over 100 users, including system developers, researchers, students, and workshop participants.
 
 
 \subsection{System architecture}
 
-The Labs Workbench platform is based on the Kubernetes\footnote{http://www.kubernetes.io} container orchestration framework, deployed using the OpenStack\footnote{http://www.openstack.org} virtualization platform. Figure \ref{fig.arch} illustrates the basic architecture. First, a set of virtual machines and volumes is provisioned via the OpenStack API. Second, Kubernetes core services (controller, kubelet, and etcd) are deployed on each node. Third, Labs Workbench core and system services are deployed via Kubernetes. Labs Workbench core services include the Nginx ingress load-balancer (nginx-ilb), which provides authenticated access to running containers in the cluster, as well as a thin REST API server (ndslabs-apiserver) an Angular user interface (ndslabs-webui). System services include standard logging, monitoring and alerting (LMA) tools such as Kibana/ElasticSearch, Grafana/Heapster, and Nagios.  The system includes a private Docker registry for image caching.  Via Labs Workbench, users can launch a variety of Docker-based applications including but not limited to Jupyter and RStudio environments. The service catalog itself is a set of customizable Javascript Object Notation (JSON) objects currently stored in Github\footnote{https://www.github.com/nds-org/ndslabs-specs}. The Labs Workbench platform uses Gluster\footnote{https://www.gluster.org/} to provide shared storage between nodes and containers. Additional shared network volumes can also be mounted via other network services, such as NFS.
+The Labs Workbench platform is based on the Kubernetes\footnote{\small http://www.kubernetes.io} container orchestration framework, deployed using the OpenStack\footnote{\small http://www.openstack.org} virtualization platform. Figure \ref{fig.arch} illustrates the basic architecture. First, a set of virtual machines and volumes is provisioned via the OpenStack API. Second, Kubernetes core services (controller, kubelet, and etcd) are deployed on each node. Third, Labs Workbench core and system services are deployed via Kubernetes. Labs Workbench core services include the Nginx ingress load-balancer (nginx-ilb), which provides authenticated access to running containers in the cluster, as well as a thin REST API server (ndslabs-apiserver) an Angular user interface (ndslabs-webui). System services include standard logging, monitoring and alerting (LMA) tools such as Kibana/ElasticSearch, Grafana/Heapster, and Nagios.  The system includes a private Docker registry for image caching.  Via Labs Workbench, users can launch a variety of Docker-based applications including but not limited to Jupyter and RStudio environments. The service catalog itself is a set of customizable Javascript Object Notation (JSON) objects currently stored in Github\footnote{https://www.github.com/nds-org/ndslabs-specs}. The Labs Workbench platform uses Gluster\footnote{https://www.gluster.org/} to provide shared storage between nodes and containers. Additional shared network volumes can also be mounted via other network services, such as NFS.
 
 \begin{figure}[!ht]
 \includegraphics[width=8.75cm]{architecture.png}
@@ -146,10 +153,8 @@ Traditional data publishing service, such as community and institutional reposit
 
 Development of the Labs Workbench platform and DataDNS system are ongoing.  Upcoming features include support for single sign-on, simplified installation processes, and support for commercial cloud services. We are also working on improved support for mounting external data into the system and exploring approaches to supporting job scheduling and execution.
 
-\section{Acknowledgements}
-The work discusses the ROGER supercomputer, which is supported by the NSF grant 1429699. 
-
 \bibliographystyle{abbrv}
+\small
 \bibliography{containers}  
 
 
